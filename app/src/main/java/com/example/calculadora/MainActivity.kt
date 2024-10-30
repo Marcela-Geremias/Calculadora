@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     private var currentInput = ""
     private var operator = ""
     private var firstNumber = 0.0
+    private var shouldResetInput = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,15 +40,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onNumberClick(value: String) {
+        if (shouldResetInput) {
+            currentInput = ""
+            shouldResetInput = false
+        }
         currentInput += value
         display.text = currentInput
     }
 
     private fun onOperatorClick(op: String) {
         if (currentInput.isNotEmpty()) {
+            if (operator.isNotEmpty()) {
+                calculateResult()  // Calcula o resultado acumulado antes de definir o novo operador
+            }
             firstNumber = currentInput.toDouble()
-            currentInput = ""
             operator = op
+            shouldResetInput = true
         }
     }
 
@@ -58,12 +66,17 @@ class MainActivity : AppCompatActivity() {
                 "+" -> firstNumber + secondNumber
                 "-" -> firstNumber - secondNumber
                 "×" -> firstNumber * secondNumber
-                "÷" -> if (secondNumber != 0.0) firstNumber / secondNumber else "Error"
-                else -> "Error"
+                "÷" -> if (secondNumber != 0.0) firstNumber / secondNumber else {
+                    display.text = "Error"
+                    return
+                }
+                else -> return
             }
             display.text = result.toString()
+            firstNumber = result // Armazena o resultado para operações subsequentes
             currentInput = ""
             operator = ""
+            shouldResetInput = true
         }
     }
 
