@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Calculadora</string>
+    <string name="btn_sete">7</string>
+    <string name="btn_divide">÷</string>
+    <string name="btn_oito">8</string>
+    <string name="btn_nove">9</string>
+    <string name="btn_multip">x</string>
+    <string name="btn_quatro">4</string>
+    <string name="btn_cinco">5</string>
+    <string name="btn_seis">6</string>
+    <string name="btn_menos">-</string>
+    <string name="btn_um">1</string>
+    <string name="btn_dois">2</string>
+    <string name="btn_tres">3</string>
+    <string name="btn_mais">+</string>
+    <string name="btn_zero">0</string>
+    <string name="btn_virgula">,</string>
+    <string name="btn_igual">=</string>
+    <string name="btn_clear">C</string>
 </resources>
